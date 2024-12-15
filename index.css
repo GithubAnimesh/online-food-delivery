@@ -1,3 +1,67 @@
-#heading {
-  color: red;
+body {
+  margin: 0;
+  padding: 0;
+}
+.header {
+  margin: 0 10px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  border: 1px solid #000;
+}
+.logoImg {
+  max-width: 100px;
+}
+.nav-items {
+  width: 100%;
+}
+ul {
+  margin: 0px 20px;
+  padding: 0;
+  display: flex;
+  justify-content: end;
+  list-style: none;
+}
+li {
+  padding: 0 30px;
+}
+
+.body {
+  width: 100%;
+  margin: 0px 10px;
+  padding: 0px;
+}
+.res-card {
+  width: 300px;
+  height: 400px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: left;
+  padding: 10px;
+  margin: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.res-card:hover {
+  transform: translateY(-5px); /* Lifts the card slightly on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Intensifies the shadow */
+  cursor: pointer; /* Adds a pointer cursor on hover */
+}
+.res-card-img {
+  width: 100%; /* Ensures the image takes up the full width of its container */
+  height: 50%; /* Maintains the aspect ratio */
+  object-fit: cover; /* Ensures the image fits its container without distortion */
+  border-radius: 16px;
+}
+.res-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px; /* Space between header and first card */
+  gap: 20px;
+  flex-grow: 1; /* Ensures cards take up remaining space */
+}
+
+.filter {
+  margin: 20px;
 }
