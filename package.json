@@ -1,8 +1,8 @@
 {
   "name": "online-food-delivery",
   "version": "1.0.0",
-  "description": "This is online food delivery app",
-  "main": "App.js",
+  "description": "This is online food delivery App",
+  "main": "index.js",
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html",
@@ -10,24 +10,26 @@
   },
   "repository": {
     "type": "git",
-    "url": "(https://github.com/GithubAnimesh/online-food-delivery)"
+    "url": "git+https://github.com/GithubAnimesh/online-food-delivery.git"
   },
   "keywords": [
     "React",
     "Food",
     "App"
   ],
-  "author": "Animesh",
+  "author": "Animesh Singh",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GithubAnimesh/online-food-delivery/issues"
+  },
+  "homepage": "https://github.com/GithubAnimesh/online-food-delivery#readme",
   "devDependencies": {
     "parcel": "^2.13.2",
     "process": "^0.11.10"
   },
   "dependencies": {
     "react": "^18.3.0",
-    "react-dom": "^18.3.0"
-  },
-  "browserslist": [
-    "last 2 versions"
-  ]
+    "react-dom": "^18.3.0",
+    "react-router-dom": "^6.4.0"
+  }
 }
