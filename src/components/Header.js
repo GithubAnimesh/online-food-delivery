@@ -4,6 +4,16 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   let [loginBtn, setLoginBtn] = useState("Login");
+  const [onlineStatus, setOnlineStatus] = useState(false);
+  const handleToggle = () => {
+    if (loginBtn === "Login") {
+      setLoginBtn("LogOut");
+      setOnlineStatus(true);
+    } else {
+      setLoginBtn("Login");
+      setOnlineStatus(false);
+    }
+  };
   return (
     <div className="header">
       <div className="logo">
@@ -11,6 +21,7 @@ const Header = () => {
       </div>
       <div className="nav-items">
         <ul>
+          <li>Online Status: {onlineStatus ? "✅" : "❌"}</li>
           <li>
             <Link className="link-tag" to="/">
               Home
@@ -23,15 +34,7 @@ const Header = () => {
           </li>
           <li>Contact Us</li>
           <li>Cart</li>
-          <button
-            onClick={() =>
-              loginBtn === "Login"
-                ? setLoginBtn("Logout")
-                : setLoginBtn("Login")
-            }
-          >
-            {loginBtn}
-          </button>
+          <button onClick={handleToggle}>{loginBtn}</button>
         </ul>
       </div>
     </div>
