@@ -33,6 +33,11 @@ const Header = () => {
             </Link>
           </li>
           <li>Contact Us</li>
+          <li>
+            <Link className="link-tag" to="/grocery">
+              Grocery
+            </Link>
+          </li>
           <li>Cart</li>
           <button onClick={handleToggle}>{loginBtn}</button>
         </ul>
