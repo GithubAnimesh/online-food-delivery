@@ -25,7 +25,6 @@ const Body = () => {
     );
   };
   let onlineStatus = useOnlineStatus();
-  console.log(onlineStatus);
 
   if (onlineStatus === false) {
     return <h1>You are not online</h1>;
@@ -33,19 +32,19 @@ const Body = () => {
   return resLists.length == 0 ? (
     <Shimmer />
   ) : (
-    <div className="body">
-      <div className="filter">
-        <div className="search-box">
+    <div className="w-full md:w-auto m-10 my-5">
+      <div className="flex">
+        <div className="border-solid  mr-3">
           <input
             type="text"
-            className="search-input"
+            className="border-2 border-indigo-600 mr-2"
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
             }}
           />
           <button
-            className="search-btn"
+            className="bg-sky-500 rounded p-2 hover:bg-sky-700 p-2"
             onClick={() => {
               const searchLists = resLists.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -57,7 +56,7 @@ const Body = () => {
           </button>
         </div>
         <button
-          className="filter-btn"
+          className="bg-sky-500 rounded p-2 hover:bg-sky-700"
           onClick={() => {
             const topResLists = resLists.filter(
               (res) => res.info.avgRating > 4.4
@@ -68,7 +67,7 @@ const Body = () => {
           Top Rated Restorent
         </button>
       </div>
-      <div className="res-container">
+      <div className="flex flex-wrap justify-center items-center my-5 w-full h-full bg-gray-200">
         {filterResLists.map((item) => (
           <Link
             className="link-tag"

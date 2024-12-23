@@ -15,31 +15,40 @@ const Header = () => {
     }
   };
   return (
-    <div className="header">
+    <div className="mx-10 px-2 flex items-center border border-black">
       <div className="logo">
-        <img alt="logo" className="logoImg" src={LOGO_URL} />
+        <img alt="logo" className="max-w-[100px]" src={LOGO_URL} />
       </div>
-      <div className="nav-items">
-        <ul>
-          <li>Online Status: {onlineStatus ? "✅" : "❌"}</li>
-          <li>
+      <div className="w-full">
+        <ul className="flex justify-end list-none m-5">
+          <li className="p-2 m-2 bg-red-200 rounded hover:bg-sky-700 hover:bg-sky-700">
+            Online Status: {onlineStatus ? "✅" : "❌"}
+          </li>
+          <li className="p-2 m-2 bg-red-200 rounded hover:bg-sky-700">
             <Link className="link-tag" to="/">
               Home
             </Link>
           </li>
-          <li>
+          <li className="p-2 m-2 bg-red-200 rounded hover:bg-sky-700">
             <Link className="link-tag" to="/about">
               About Us
             </Link>
           </li>
-          <li>Contact Us</li>
-          <li>
+          <li className="p-2 m-2 bg-red-200 rounded hover:bg-sky-700">
+            Contact Us
+          </li>
+          <li className="p-2 m-2 bg-red-200 rounded hover:bg-sky-700">
             <Link className="link-tag" to="/grocery">
               Grocery
             </Link>
           </li>
-          <li>Cart</li>
-          <button onClick={handleToggle}>{loginBtn}</button>
+          <li className="p-2 m-2 bg-red-200 rounded hover:bg-sky-700">Cart</li>
+          <button
+            className="p-2 m-2 bg-red-200 rounded hover:bg-sky-700"
+            onClick={handleToggle}
+          >
+            {loginBtn}
+          </button>
         </ul>
       </div>
     </div>
