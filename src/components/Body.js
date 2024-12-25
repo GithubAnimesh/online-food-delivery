@@ -3,27 +3,34 @@ import Shimmer from "./Shimmer";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
-
+import fetchData from "../utils/fetchCall";
+import { FETCH_REF_URL } from "../utils/constants";
 const Body = () => {
   const [resLists, setResLists] = useState([]);
   const [filterResLists, setFilterResLists] = useState([]);
   const [searchText, setSearchText] = useState("");
   const VegRestorent = VegRestorentCard(RestorentCard);
   useEffect(() => {
-    fetchData();
+    restaurentData();
   }, []);
-  const fetchData = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.2226149&lng=73.102795&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
-    const json = await data.json();
+
+  const restaurentData = async () => {
+    const fetchDataList = await fetchData(FETCH_REF_URL);
     setResLists(
-      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      fetchDataList?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
     );
     setFilterResLists(
-      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      fetchDataList?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    );
+    console.log(
+      "Body data is",
+      fetchDataList?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
     );
   };
+
   let onlineStatus = useOnlineStatus();
 
   if (onlineStatus === false) {

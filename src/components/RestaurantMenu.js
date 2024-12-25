@@ -1,39 +1,42 @@
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
-import data from "../utils/mockMenuData";
-import { MENU_IMG_URL } from "../utils/constants";
+import { Fetch_MRNU_REF_URL } from "../utils/constants";
 import { useParams } from "react-router-dom";
+import RestaurantCategories from "./RestaurantCategories";
+import fetchData from "../utils/fetchCall";
 const RestaurantMenu = () => {
   const [menuData, setMenuData] = useState([]);
+  const [categories, setCategories] = useState([]);
   const resId = useParams();
   useEffect(() => {
-    setMenuData(data);
+    fetchMenu();
   }, []);
 
-  // const fetchMenu = async () => {
-  //   const data = await fetch(
-  //     "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=19.2226149&lng=73.102795&restaurantId=resId&catalog_qa=undefined&submitAction=ENTER"
-  //   );
-  //   const json = await data.json();
-  //   setMenuData(json.data);
-  // };
-  // console.log("JSON data is", data);
-  // setMenuData(data);
+  const fetchMenu = async () => {
+    const fetchDataList = await fetchData(Fetch_MRNU_REF_URL);
+    setMenuData(
+      fetchDataList?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]
+        ?.card?.card?.itemCards
+    );
+    const filterCategories =
+      fetchDataList.cards[4].groupedCard.cardGroupMap.REGULAR.cards.filter(
+        (c) =>
+          c.card?.card?.["@type"] ==
+          "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+      );
+    setCategories(filterCategories);
+  };
   if (menuData === null) return <Shimmer />;
-
-  //const { itemCard } = JSON.stringify(menuData);
-
   return (
-    <div className="menu">
-      <h1>Restaurant Menu</h1>
-      <ul>
-        {menuData.map((item) => (
-          <li key={item?.card?.info?.id}>
-            <img src={MENU_IMG_URL + item?.card?.info?.imageId} />
-            {item?.card?.info?.name} - ₹{item?.card?.info?.price / 100}
-          </li>
-        ))}
-      </ul>
+    <div className="text-center">
+      <p className="font-bold my-5 text-lg">Restaurant name</p>
+      <p className="font-bold text-lg">cuisinies</p>
+      {categories.map((category) => (
+        <RestaurantCategories
+          data={category.card.card}
+          key={category.card.card.title}
+        />
+      ))}
     </div>
   );
 };
