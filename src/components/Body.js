@@ -1,4 +1,4 @@
-import RestorentCard from "./RestorentCard";
+import RestorentCard, { VegRestorentCard } from "./RestorentCard";
 import Shimmer from "./Shimmer";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -8,20 +8,20 @@ const Body = () => {
   const [resLists, setResLists] = useState([]);
   const [filterResLists, setFilterResLists] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const VegRestorent = VegRestorentCard(RestorentCard);
   useEffect(() => {
     fetchData();
   }, []);
-
   const fetchData = async () => {
     const data = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.2226149&lng=73.102795&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
     setResLists(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
     setFilterResLists(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
   let onlineStatus = useOnlineStatus();
@@ -74,7 +74,12 @@ const Body = () => {
             to={"/restaurant/" + item.info.id}
             key={item.info.id}
           >
-            <RestorentCard resLists={item} />
+            {" "}
+            {item.info.avgRating > 4 ? (
+              <VegRestorent resLists={item} />
+            ) : (
+              <RestorentCard resLists={item} />
+            )}
           </Link>
         ))}
       </div>

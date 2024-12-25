@@ -12,7 +12,7 @@ const RestorentCard = (props) => {
       />
       <div className="w-full h-1/2 py-3">
         <h3 className="px-3 py-2 text-black font-sans align-middle text-xl font-bold">
-          {name} ⭐{avgRating}
+          {name} ⭐ {avgRating}
         </h3>
         <h3 className="px-3 text-black font-sans align-middle text-lg ">
           {cuisines.join(", ")} {costForTwo}
@@ -21,4 +21,18 @@ const RestorentCard = (props) => {
     </div>
   );
 };
+
+export const VegRestorentCard = (RestorentCard) => {
+  return (props) => {
+    return (
+      <div>
+        <label className="bg-green-400 p-2 text-zinc-100 font-bold absolute rounded">
+          Veg
+        </label>
+        <RestorentCard {...props} />
+      </div>
+    );
+  };
+};
+
 export default RestorentCard;
