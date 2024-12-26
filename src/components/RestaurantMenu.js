@@ -7,7 +7,10 @@ import fetchData from "../utils/fetchCall";
 const RestaurantMenu = () => {
   const [menuData, setMenuData] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [showIndex, setShowIndex] = useState(null);
+
   const resId = useParams();
+
   useEffect(() => {
     fetchMenu();
   }, []);
@@ -31,10 +34,12 @@ const RestaurantMenu = () => {
     <div className="text-center">
       <p className="font-bold my-5 text-lg">Restaurant name</p>
       <p className="font-bold text-lg">cuisinies</p>
-      {categories.map((category) => (
+      {categories.map((category, index) => (
         <RestaurantCategories
           data={category.card.card}
           key={category.card.card.title}
+          showItems={index === showIndex}
+          setShowIndex={() => setShowIndex(index === showIndex ? null : index)}
         />
       ))}
     </div>

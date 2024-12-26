@@ -1,9 +1,7 @@
-import { useState } from "react";
 import ItemList from "./ItemList";
-const RestaurantCategories = ({ data }) => {
-  const [showItem, setShowItems] = useState(false);
+const RestaurantCategories = ({ data, showItems, setShowIndex }) => {
   const accordion = () => {
-    showItem == false ? setShowItems(true) : setShowItems(false);
+    setShowIndex();
   };
   return (
     <div>
@@ -16,11 +14,11 @@ const RestaurantCategories = ({ data }) => {
             {data.title} ({data.itemCards.length})
           </span>
           <span className="cursor-pointer text-gray-600 hover:text-gray-800">
-            ⬇️
+            {showItems ? "⬆️" : "⬇️"}
           </span>
         </div>
         <div className="mt-4">
-          {showItem && <ItemList items={data.itemCards} />}
+          {showItems && <ItemList items={data.itemCards} />}
         </div>
       </div>
     </div>
