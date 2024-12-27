@@ -8,6 +8,7 @@ const RestaurantMenu = () => {
   const [menuData, setMenuData] = useState([]);
   const [categories, setCategories] = useState([]);
   const [showIndex, setShowIndex] = useState(null);
+  const [resName, setResName] = useState();
 
   const resId = useParams();
 
@@ -16,7 +17,9 @@ const RestaurantMenu = () => {
   }, []);
 
   const fetchMenu = async () => {
-    const fetchDataList = await fetchData(Fetch_MRNU_REF_URL);
+    const fetchRefUrl = Fetch_MRNU_REF_URL.replace("RESCODE", resId.resId);
+    const fetchDataList = await fetchData(fetchRefUrl);
+    setResName(fetchDataList.cards[0].card.card.text);
     setMenuData(
       fetchDataList?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]
         ?.card?.card?.itemCards
@@ -32,8 +35,7 @@ const RestaurantMenu = () => {
   if (menuData === null) return <Shimmer />;
   return (
     <div className="text-center">
-      <p className="font-bold my-5 text-lg">Restaurant name</p>
-      <p className="font-bold text-lg">cuisinies</p>
+      <p className="font-bold my-5 text-lg">{resName}</p>
       {categories.map((category, index) => (
         <RestaurantCategories
           data={category.card.card}

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 const Header = () => {
   let [loginBtn, setLoginBtn] = useState("Login");
   const [onlineStatus, setOnlineStatus] = useState(false);
+
   const handleToggle = () => {
     if (loginBtn === "Login") {
       setLoginBtn("LogOut");
@@ -14,37 +15,43 @@ const Header = () => {
       setOnlineStatus(false);
     }
   };
+
   return (
-    <div className="mx-10 px-2 flex items-center border border-black">
+    <div className="mx-10 px-2 flex items-center border border-black shadow-md bg-white">
+      {/* Logo */}
       <div className="logo">
         <img alt="logo" className="max-w-[100px]" src={LOGO_URL} />
       </div>
+
+      {/* Navigation */}
       <div className="w-full">
         <ul className="flex justify-end list-none m-5">
-          <li className="p-2 m-2 bg-red-200 rounded hover:bg-sky-700 hover:bg-sky-700">
+          <li className="p-2 m-2 bg-red-200 rounded hover:bg-sky-700 hover:text-white">
             Online Status: {onlineStatus ? "✅" : "❌"}
           </li>
-          <li className="p-2 m-2 bg-red-200 rounded hover:bg-sky-700">
+          <li className="p-2 m-2 bg-red-200 rounded hover:bg-sky-700 hover:text-white">
             <Link className="link-tag" to="/">
               Home
             </Link>
           </li>
-          <li className="p-2 m-2 bg-red-200 rounded hover:bg-sky-700">
+          <li className="p-2 m-2 bg-red-200 rounded hover:bg-sky-700 hover:text-white">
             <Link className="link-tag" to="/about">
               About Us
             </Link>
           </li>
-          <li className="p-2 m-2 bg-red-200 rounded hover:bg-sky-700">
+          <li className="p-2 m-2 bg-red-200 rounded hover:bg-sky-700 hover:text-white">
             Contact Us
           </li>
-          <li className="p-2 m-2 bg-red-200 rounded hover:bg-sky-700">
+          <li className="p-2 m-2 bg-red-200 rounded hover:bg-sky-700 hover:text-white">
             <Link className="link-tag" to="/grocery">
               Grocery
             </Link>
           </li>
-          <li className="p-2 m-2 bg-red-200 rounded hover:bg-sky-700">Cart</li>
+          <li className="p-2 m-2 bg-red-200 rounded hover:bg-sky-700 hover:text-white">
+            Cart
+          </li>
           <button
-            className="p-2 m-2 bg-red-200 rounded hover:bg-sky-700"
+            className="p-2 m-2 bg-red-200 rounded hover:bg-sky-700 hover:text-white"
             onClick={handleToggle}
           >
             {loginBtn}
@@ -54,4 +61,5 @@ const Header = () => {
     </div>
   );
 };
+
 export default Header;

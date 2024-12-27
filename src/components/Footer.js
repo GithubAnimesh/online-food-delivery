@@ -1,4 +1,7 @@
+import UserContext from "../utils/UserContext";
+import { useContext } from "react";
 const Footer = () => {
+  const userInfo = useContext(UserContext);
   return (
     <footer className="flex flex-col items-center justify-center text-white bg-black mx-10 px-2 py-6">
       <div className="footer-top text-center mb-4">

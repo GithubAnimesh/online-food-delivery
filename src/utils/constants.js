@@ -7,4 +7,4 @@ export const MENU_IMG_URL =
 export const FETCH_REF_URL =
   "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.2226149&lng=73.102795&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
 export const Fetch_MRNU_REF_URL =
-  "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=19.2226149&lng=73.102795&restaurantId=900362&catalog_qa=undefined&submitAction=ENTER";
+  "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=19.2226149&lng=73.102795&restaurantId=RESCODE&catalog_qa=undefined&submitAction=ENTER";

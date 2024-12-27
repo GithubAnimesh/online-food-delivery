@@ -1,19 +1,20 @@
 import RestorentCard, { VegRestorentCard } from "./RestorentCard";
 import Shimmer from "./Shimmer";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import fetchData from "../utils/fetchCall";
+import userData from "../utils/UserContext";
 import { FETCH_REF_URL } from "../utils/constants";
 const Body = () => {
   const [resLists, setResLists] = useState([]);
   const [filterResLists, setFilterResLists] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const userInfo = useContext(userData);
   const VegRestorent = VegRestorentCard(RestorentCard);
   useEffect(() => {
     restaurentData();
   }, []);
-
   const restaurentData = async () => {
     const fetchDataList = await fetchData(FETCH_REF_URL);
     setResLists(
@@ -21,11 +22,6 @@ const Body = () => {
         ?.restaurants
     );
     setFilterResLists(
-      fetchDataList?.cards[4]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
-    );
-    console.log(
-      "Body data is",
       fetchDataList?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
