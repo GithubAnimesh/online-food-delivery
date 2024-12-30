@@ -1,5 +1,12 @@
+import { useDispatch } from "react-redux";
 import { MENU_IMG_URL } from "../utils/constants";
+import { addItem } from "../utils/cartSlice";
 const ItemList = ({ items }) => {
+  const dispacher = useDispatch();
+  const handleAddItem = (item) => {
+    dispacher(addItem(item));
+  };
+
   return (
     <div className="m-4 p-4 bg-gray-100 rounded-lg shadow-lg">
       {items.map((item) => (
@@ -40,7 +47,12 @@ const ItemList = ({ items }) => {
               Image not available
             </div>
           )}
-          <button className="bg-lime-500 p-2 rounded text-white">Add +</button>
+          <button
+            className="bg-lime-500 p-2 rounded text-white"
+            onClick={() => handleAddItem(item)}
+          >
+            Add +
+          </button>
         </div>
       ))}
     </div>

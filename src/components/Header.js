@@ -1,10 +1,15 @@
 import { LOGO_URL } from "../utils/constants";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Header = () => {
   let [loginBtn, setLoginBtn] = useState("Login");
   const [onlineStatus, setOnlineStatus] = useState(false);
+
+  // subscribing to the store using selector
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
 
   const handleToggle = () => {
     if (loginBtn === "Login") {
@@ -47,9 +52,11 @@ const Header = () => {
               Grocery
             </Link>
           </li>
-          <li className="p-2 m-2 bg-red-200 rounded hover:bg-sky-700 hover:text-white">
-            Cart
-          </li>
+          <Link className="link-tag" to="/cart">
+            <li className="p-2 m-2 bg-red-200 rounded hover:bg-sky-700 hover:text-white">
+              Cart ({cartItems.length} items)
+            </li>{" "}
+          </Link>
           <button
             className="p-2 m-2 bg-red-200 rounded hover:bg-sky-700 hover:text-white"
             onClick={handleToggle}

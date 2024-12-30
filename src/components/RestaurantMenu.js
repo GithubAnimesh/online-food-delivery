@@ -35,7 +35,7 @@ const RestaurantMenu = () => {
   if (menuData === null) return <Shimmer />;
   return (
     <div className="text-center">
-      <p className="font-bold my-5 text-lg">{resName}</p>
+      <h1 className="font-bold my-5 text-lg">{resName}</h1>
       {categories.map((category, index) => (
         <RestaurantCategories
           data={category.card.card}
