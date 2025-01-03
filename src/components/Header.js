@@ -9,7 +9,6 @@ const Header = () => {
 
   // subscribing to the store using selector
   const cartItems = useSelector((store) => store.cart.items);
-  console.log(cartItems);
 
   const handleToggle = () => {
     if (loginBtn === "Login") {
@@ -44,9 +43,11 @@ const Header = () => {
               About Us
             </Link>
           </li>
-          <li className="p-2 m-2 bg-red-200 rounded hover:bg-sky-700 hover:text-white">
-            Contact Us
-          </li>
+          <Link className="link-tag" to="/contact">
+            <li className="p-2 m-2 bg-red-200 rounded hover:bg-sky-700 hover:text-white">
+              Contact Us
+            </li>
+          </Link>
           <li className="p-2 m-2 bg-red-200 rounded hover:bg-sky-700 hover:text-white">
             <Link className="link-tag" to="/grocery">
               Grocery
